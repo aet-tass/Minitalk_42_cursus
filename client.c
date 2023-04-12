@@ -1,7 +1,16 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <signal.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   client.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aet-tass <aet-tass@student.1337.ma>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/04/11 16:49:29 by aet-tass          #+#    #+#             */
+/*   Updated: 2023/04/11 18:26:56 by aet-tass         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "minitalk.h"
 
 void send_message(int pid, char *message)
 {
@@ -42,4 +51,3 @@ int main(int argc, char *argv[])
 
     return 0;
 }
-
