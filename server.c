@@ -6,40 +6,44 @@
 /*   By: aet-tass <aet-tass@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 00:29:39 by aet-tass          #+#    #+#             */
-/*   Updated: 2023/04/12 00:36:26 by aet-tass         ###   ########.fr       */
+/*   Updated: 2023/04/13 01:19:36 by aet-tass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <signal.h>
-#include <unistd.h>
-
-int power_of_two(int base, int exponent)
-{
-    int result = 1;
-    for (int i = 0; i < exponent; i++)
-    {
-        result *= base;
-    }
-    return result;
-}
-
-char create_char(int *bits, int size)
+char conv_to_char(int *bits, int size)
 {
     char c = 0;
     for (int i = 0; i < size; i++)
     {
         if (bits[i] == 1)
         {
-            c += power_of_two(2, size - i - 1);
+            int exponent = size - i - 1;
+            int base = 2;
+            int result = 1;
+            while (exponent > 0)
+            {
+                result *= base;
+                exponent--;
+            }
+            c += result;
         }
     }
     return c;
 }
 
-void handle_signal(int signal, siginfo_t *info, void *context)
-{
+void update_buffer(int signal, int* bit_buffer, int* buffer_index) {
+    if (signal == SIGUSR1)
+    {
+        bit_buffer[*buffer_index] = 1;
+    }
+    else
+    {
+        bit_buffer[*buffer_index] = 0;
+    }
+    (*buffer_index)++;
+}
+
+void handle_signal(int signal, siginfo_t *info, void *context) {
     static int bit_buffer[8];
     static int buffer_index = 0;
     static int client_pid = 0;
@@ -50,14 +54,17 @@ void handle_signal(int signal, siginfo_t *info, void *context)
         client_pid = info->si_pid;
         buffer_index = 0;
     }
-    bit_buffer[buffer_index++] = (signal == SIGUSR1);
+
+    update_buffer(signal, bit_buffer, &buffer_index);
+
     if (buffer_index == 8)
     {
-        character = create_char(bit_buffer, buffer_index);
-        write(STDOUT_FILENO, &character, 1);
+        character = conv_to_char(bit_buffer, buffer_index);
+        write(1, &character, 1);
         buffer_index = 0;
     }
 }
+
 
 int main(int argc, char **argv)
 {
@@ -80,4 +87,3 @@ int main(int argc, char **argv)
         pause();
     }
 }
-
