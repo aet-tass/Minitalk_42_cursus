@@ -6,20 +6,18 @@
 #    By: aet-tass <aet-tass@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/11 18:24:31 by aet-tass          #+#    #+#              #
-#    Updated: 2023/04/11 18:25:08 by aet-tass         ###   ########.fr        #
+#    Updated: 2023/04/14 05:26:50 by aet-tass         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRC = client.c utuls.c
+SRC = server.c utils.c
 OBJ = ${SRC:.c=.o}
 
-NAME = libftprintf.a
+NAME = server
 
 CFLAGS = -Wall -Wextra -Werror
 
 RM = rm -f
-
-AR = ar -rc
 
 CC = cc
 
@@ -29,7 +27,7 @@ CC = cc
 all : ${NAME}
 
 ${NAME}: ${OBJ}
-	${AR} ${NAME} ${OBJ}
+	 ${CC} ${CFLAGS} ${OBJ} -o ${NAME}
 
 clean:
 	${RM} ${OBJ}
@@ -40,3 +38,5 @@ fclean: clean
 re: fclean all
 
 .PHONY:		all clean fclean re
+
+

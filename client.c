@@ -6,7 +6,7 @@
 /*   By: aet-tass <aet-tass@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 16:49:29 by aet-tass          #+#    #+#             */
-/*   Updated: 2023/04/11 18:26:56 by aet-tass         ###   ########.fr       */
+/*   Updated: 2023/04/14 05:19:15 by aet-tass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int main(int argc, char *argv[])
         return 1;
     }
 
-    pid = atoi(argv[1]);
+    pid = ft_atoi(argv[1]);
 
     send_message(pid, argv[2]);
 

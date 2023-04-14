@@ -6,11 +6,11 @@
 /*   By: aet-tass <aet-tass@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 18:27:22 by aet-tass          #+#    #+#             */
-/*   Updated: 2023/04/11 18:28:03 by aet-tass         ###   ########.fr       */
+/*   Updated: 2023/04/14 04:53:13 by aet-tass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minitalk"
+#include "minitalk.h"
 
 int	ft_atoi(const char *str)
 {

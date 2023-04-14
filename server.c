@@ -5,10 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: aet-tass <aet-tass@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/12 00:29:39 by aet-tass          #+#    #+#             */
-/*   Updated: 2023/04/13 01:19:36 by aet-tass         ###   ########.fr       */
+/*   Created: 2023/04/14 05:21:19 by aet-tass          #+#    #+#             */
+/*   Updated: 2023/04/14 05:21:22 by aet-tass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "minitalk.h"
 
 char conv_to_char(int *bits, int size)
 {
@@ -31,7 +33,8 @@ char conv_to_char(int *bits, int size)
     return c;
 }
 
-void update_buffer(int signal, int* bit_buffer, int* buffer_index) {
+void update_buffer(int signal, int* bit_buffer, int* buffer_index)
+{
     if (signal == SIGUSR1)
     {
         bit_buffer[*buffer_index] = 1;
@@ -43,7 +46,9 @@ void update_buffer(int signal, int* bit_buffer, int* buffer_index) {
     (*buffer_index)++;
 }
 
-void handle_signal(int signal, siginfo_t *info, void *context) {
+void handle_signal(int signal, siginfo_t *info, void *context)
+{
+	(void )context;
     static int bit_buffer[8];
     static int buffer_index = 0;
     static int client_pid = 0;
@@ -68,13 +73,14 @@ void handle_signal(int signal, siginfo_t *info, void *context) {
 
 int main(int argc, char **argv)
 {
+	(void)argv;
     int pid;
     struct sigaction signal_action;
 
     if (argc != 1)
     {
         printf("Error: Incorrect number of arguments\n");
-        return EXIT_FAILURE;
+        return (1);
     }
     pid = getpid();
     printf("Server PID: %d\n", pid);
