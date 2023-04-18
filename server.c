@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   server.c                                           :+:      :+:    :+:   */
+/*   server.c             ########    ## #     ##    ##             ## ##     */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aet-tass <aet-tass@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 05:21:19 by aet-tass          #+#    #+#             */
-/*   Updated: 2023/04/14 05:21:22 by aet-tass         ###   ########.fr       */
+/*   Updated: 2023/   ########    ##      # #    ##    ##  ##           ##    */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,11 @@ void update_buffer(int signal, int* bit_buffer, int* buffer_index)
 {
     if (signal == SIGUSR1)
     {
-        bit_buffer[*buffer_index] = 1;
+        bit_buffer[*buffer_index] = 0;
     }
     else
     {
-        bit_buffer[*buffer_index] = 0;
+        bit_buffer[*buffer_index] = 1;
     }
     (*buffer_index)++;
 }
