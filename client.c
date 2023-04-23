@@ -12,66 +12,64 @@
 
 #include "minitalk.h"
 
-int encode_bit(char c, int i)
+int	encode_bit(char c, int i)
 {
-    return (c >> i) & 1;
+	return ((c >> i) & 1);
 }
 
-void send_bit(int pid, int bit)
+void	send_bit(int pid, int bit)
 {
-    if (bit == 0)
-    {
-        if (kill(pid, SIGUSR1) == -1)
-        {
-            printf("Invalid Pid\n");
-            exit(1);
-        }
-    }
-    else
-    {
-        if (kill(pid, SIGUSR2) == -1)
-        {
-            printf("Invalid Pid\n");
-            exit(1);
-        }
-    }
-    usleep(200);
+	if (bit == 0)
+	{
+		if (kill(pid, SIGUSR1) == -1)
+		{
+			printf("Invalid Pid\n");
+			exit(1);
+		}
+	}
+	else
+	{
+		if (kill(pid, SIGUSR2) == -1)
+		{
+			printf("Invalid Pid\n");
+			exit(1);
+		}
+	}
+	usleep(200);
 }
 
-void send_encoded_message(int pid, char *message)
+void	send_encoded_message(int pid, char *message)
 {
-    int bit;
+	int	bit;
+	int	i;
 
-    while (*message != '\0')
-    {
-        int i = 7;
-        while (i >= 0)
-        {
-            bit = encode_bit(*message, i);
-            send_bit(pid, bit);
-            i--;
-        }
-        usleep(100);
-        message++;
-    }
+	while (*message != '\0')
+	{
+		i = 7;
+		while (i >= 0)
+		{
+			bit = encode_bit(*message, i);
+			send_bit(pid, bit);
+			i--;
+		}
+		usleep(100);
+		message++;
+	}
 }
 
-
-int main(int argc, char *argv[])
+int	main(int argc, char *argv[])
 {
-    int pid;
-	
-    if (argc != 3)
-    {
-        ft_printf("Usage: %s pid message\n", argv[0]);
-        return 1;
-    }
+	int	pid;
 
-    pid = ft_atoi(argv[1]);
+	if (argc != 3)
+	{
+		ft_printf("Usage: %s pid message\n", argv[0]);
+		return (1);
+	}
+	pid = ft_atoi(argv[1]);
 	if (pid <= 0)
 		exit(1);
-	else 
-    	send_encoded_message(pid, argv[2]);
-
-    return 0;
+	else
+		send_encoded_message(pid, argv[2]);
+	return (0);
 }
