@@ -1,14 +1,15 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   server.c                                           :+:      :+:    :+:   */
+/*   server_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aet-tass <aet-tass@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/14 05:21:19 by aet-tass          #+#    #+#             */
-/*   Updated: 2023/04/23 18:24:09 by aet-tass         ###   ########.fr       */
+/*   Created: 2023/04/23 17:22:55 by aet-tass          #+#    #+#             */
+/*   Updated: 2023/04/23 18:24:27 by aet-tass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "minitalk.h"
 
@@ -82,11 +83,11 @@ int main(int argc, char **argv)
 
     if (argc != 1)
     {
-        printf("Error: Incorrect number of arguments\n");
+        ft_printf("Error: Incorrect number of arguments\n");
         return (1);
     }
     pid = getpid();
-    ft_printf("Server PID: %d\n", pid);
+    printf("Server PID: %d\n", pid);
     signal_action.sa_sigaction = &handle_signal;
     signal_action.sa_flags = SA_SIGINFO;
     sigaction(SIGUSR1, &signal_action, NULL);

@@ -6,12 +6,13 @@
 /*   By: aet-tass <aet-tass@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 04:47:41 by aet-tass          #+#    #+#             */
-/*   Updated: 2023/04/14 04:50:30 by aet-tass         ###   ########.fr       */
+/*   Updated: 2023/04/23 18:55:58 by aet-tass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINITALK_H
 # define MINITALK_H
+# include "utils/ft_printf.h"
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
